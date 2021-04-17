@@ -8,13 +8,13 @@ public class Main {
                     Keygen.generateKey();
                     break;
                 }
-                case "--incript":{
-                    Encoder.incriptDecriptFile(args[++i], Keygen.getKey("public.key"));
+                case "--encrypt":{
+                    Encoder.encryptDecryptFile(args[++i], Keygen.getKey("public.key"));
                     break;
                 }
 
-                case "--decript":{
-                    Encoder.incriptDecriptFile(args[++i], Keygen.getKey("private.key"));
+                case "--decrypt":{
+                    Encoder.encryptDecryptFile(args[++i], Keygen.getKey("private.key"));
                     break;
                 }
 
@@ -27,9 +27,18 @@ public class Main {
                     Encoder.checkFile(args[++i], Keygen.getKey("public.key"));
                     break;
                 }
+                case "--help":{
+                    System.out.println(" --keygen : generate public and private keys\n"+
+                            " --encrypt <file> : encrypt given file using existing keys\n"+
+                            " --decrypt <file> : decrypt given file using existing keys\n"+
+                            " --sign <file> : generate electronic sign for given file using private key\n"+
+                            " --check <file> : check file using existing sign and public key\n");
+                    break;
+                }
 
                 default:{
                     System.out.println("Command not recognised");
+                    i = args.length;
                 }
             }
         }

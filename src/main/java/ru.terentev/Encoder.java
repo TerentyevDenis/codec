@@ -12,7 +12,7 @@ public class Encoder {
         return input.modPow(key.getKey(),key.getN()).toByteArray();
     }
 
-    public static void incriptDecriptFile(String file, Key key){
+    public static void encryptDecryptFile(String file, Key key){
         Path path = Paths.get(file);
         byte[] data = null;
         try {
@@ -33,6 +33,7 @@ public class Encoder {
             data = Files.readAllBytes(path);
             data = incriptDecript(BigInteger.valueOf(Arrays.hashCode(data)),key);
             Files.write(pathSign,data);
+            System.out.println("File signed");
         } catch (IOException e) {
             e.printStackTrace();
         }
